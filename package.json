@@ -1,0 +1,22 @@
+{
+  "name": "04-bitmap-binary",
+  "version": "1.0.0",
+  "description": "Bitmap color transformer",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SharonMiller/04-bitmap-binary.git"
+  },
+  "author": "Sharon Miller <sharonmillerdev@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SharonMiller/04-bitmap-binary/issues"
+  },
+  "homepage": "https://github.com/SharonMiller/04-bitmap-binary#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
