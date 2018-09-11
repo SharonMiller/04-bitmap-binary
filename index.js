@@ -9,6 +9,7 @@ let inputFile = args[2];
 let outputFile = args[3];
 let transform = args[4]
 
+
 console.log(inputFile); //arg passed by user
 console.log(outputFile);
 console.log(transform);
@@ -30,7 +31,9 @@ bmt.open(inputFile, (err, bitmap) => {
 });
 
 ee.on('fileLoaded', (bitmap) => {
-  console.log(bitmap);
+  console.log('im the bitmap on 33');
+  //if transform === invert then run invert 
+  //should this be transformed???
   bmt.invert(bitmap, (err, bitmap) => {
     if(err) throw err;
 
@@ -39,8 +42,9 @@ ee.on('fileLoaded', (bitmap) => {
 });
 
 ee.on('transformed', (bitmap) => {
-  bmt.save(bitmap, outputFile, (err, data) => {
+  bmt.save(outputFile, bitmap, (err, bitmap) => {
   if(err) throw err;
+  
     console.log('File transformed and saved successfully!');
-  })
-})
+  });
+});
