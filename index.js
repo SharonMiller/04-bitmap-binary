@@ -32,13 +32,18 @@ bmt.open(inputFile, (err, bitmap) => {
 
 ee.on('fileLoaded', (bitmap) => {
   console.log('im the bitmap on 33');
-  //if transform === invert then run invert 
+  if (transform === 'bright') {
+      bmt.bright(bitmap, (err, bitmap) => {
+      if(err) throw err;
+      ee.emit('transformed', bitmap);
+    });
+  } else if (transform === 'invert') {
+    bmt.invert(bitmap, (err, bitmap) => {
+      if(err) throw err;
+      ee.emit('transformed', bitmap);
+    });
+  }
   //should this be transformed???
-  bmt.invert(bitmap, (err, bitmap) => {
-    if(err) throw err;
-
-    ee.emit('transformed', bitmap);
-  });
 });
 
 ee.on('transformed', (bitmap) => {
