@@ -7,7 +7,8 @@ if (args.length < 5) {
 }
 let inputFile = args[2];
 let outputFile = args[3];
-let transform = args[4]
+let transform = args[4];
+
 
 console.log(inputFile); //arg passed by user
 console.log(outputFile);
@@ -30,17 +31,36 @@ bmt.open(inputFile, (err, bitmap) => {
 });
 
 ee.on('fileLoaded', (bitmap) => {
-  console.log(bitmap);
-  bmt.invert(bitmap, (err, bitmap) => {
-    if(err) throw err;
-
-    ee.emit('transformed', bitmap);
-  });
+  console.log('im the bitmap on 33');
+  if (transform === 'bright') {
+    bmt.bright(bitmap, (err, bitmap) => {
+      if (err) throw err;
+      ee.emit('transformed', bitmap);
+    });
+    //run invert code
+  } else if (transform === 'invert') {
+    bmt.invert(bitmap, (err, bitmap) => {
+      if (err) throw err;
+      ee.emit('transformed', bitmap);
+    });
+  } else if (transform === 'finelines') {
+    bmt.finelines(bitmap, (err, bitmap) => {
+      if (err) throw err;
+      ee.emit('transformed', bitmap);
+    });
+  } else if (transform === 'bluelight') {
+    bmt.bluelight(bitmap, (err, bitmap) => {
+      if (err) throw err;
+      ee.emit('transformed', bitmap);
+    });
+  }
 });
 
+
 ee.on('transformed', (bitmap) => {
-  bmt.save(bitmap, outputFile, (err, data) => {
-  if(err) throw err;
+  bmt.save(outputFile, bitmap, (err, bitmap) => {
+    if (err) throw err;
+
     console.log('File transformed and saved successfully!');
-  })
-})
+  });
+});
