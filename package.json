@@ -4,7 +4,7 @@
   "description": "Bitmap color transformer",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js ./__test__/asset/rgb.bmp ./__test__/asset/x-rgb.bmp bw",
+    "start": "node index.js ./__test__/asset/rgb.bmp ./__test__/asset/x-rgb.bmp finelines",
     "test": "jest"
   },
   "repository": {
